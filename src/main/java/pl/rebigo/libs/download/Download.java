@@ -1,4 +1,4 @@
-package pl.itgolo.mod.download;
+package pl.rebigo.libs.download;
 
 import java.io.BufferedInputStream;
 import java.io.File;
