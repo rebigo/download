@@ -1,0 +1,41 @@
+plugins {
+    id "java"
+    id "maven-publish"
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+group 'pl.rebigo.libs'
+version '1.0.0.0'
+
+sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+bintray {
+    user = 'rebigo'
+    key = System.getenv("BINTRAY_APIKEY")
+    pkg {
+        repo = 'libs'
+        name = project.getName()
+        userOrg = 'rebigo'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/rebigo/' + project.getName() + '.git'
+    }
+    publications = ['MyPublication']
+
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+        }
+    }
+}
